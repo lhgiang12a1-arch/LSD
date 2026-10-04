@@ -1,0 +1,313 @@
+﻿      :root {
+        --primary-red: #c8102e; /* Đỏ cờ */
+        --primary-blue: #0033a0; /* Xanh dương học thuật */
+        --bg-white: #ffffff;
+        --bg-light: #f8fafc;
+        --text-dark: #1e293b;
+        --text-gray: #475569;
+        --accent-gold: #ffeb3b; /* Vàng sao */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #111;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        color: var(--text-dark);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Lora", serif;
+      }
+
+      /* Container của Slide (Tỷ lệ 16:9) */
+      .presentation-container {
+        width: 100%;
+        max-width: 1280px;
+        aspect-ratio: 16 / 9;
+        background: var(--bg-white);
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 80px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.5s ease-in-out,
+          visibility 0.5s;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-white);
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Slide Titles */
+      .slide-header {
+        margin-bottom: 40px;
+        border-bottom: 3px solid var(--primary-red);
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+      .slide-title {
+        color: var(--primary-blue);
+        font-size: 36px;
+        font-weight: 700;
+      }
+
+      /* Content Layouts */
+      .content-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        flex-grow: 1;
+      }
+      .content-flex-col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex-grow: 1;
+        justify-content: center;
+      }
+
+      ul.custom-list {
+        list-style: none;
+      }
+      ul.custom-list li {
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 15px;
+        font-size: 20px;
+        line-height: 1.5;
+        color: var(--text-gray);
+      }
+      ul.custom-list li::before {
+        content: "\f00c";
+        font-family: "FontAwesome";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        color: var(--primary-red);
+        font-size: 18px;
+      }
+
+      .box {
+        background: var(--bg-light);
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 5px solid var(--primary-blue);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      .box-red {
+        border-left-color: var(--primary-red);
+      }
+
+      .timeline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-blue);
+        z-index: 1;
+        transform: translateY(-50%);
+      }
+      .timeline-item {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 120px;
+      }
+      .timeline-year {
+        background: var(--primary-red);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0 auto 15px auto;
+        border: 4px solid white;
+      }
+      .timeline-content {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary-blue);
+      }
+
+      .mindmap-center {
+        background: var(--primary-blue);
+        color: white;
+        padding: 30px;
+        border-radius: 50%;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 auto;
+        border: 5px solid var(--primary-red);
+      }
+
+      /* Khung ảnh phong cách học thuật thay thế ảnh web */
+      .academic-image-placeholder {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      .bg-red-gradient {
+        background: linear-gradient(135deg, #a00018, #e53935);
+      }
+      .bg-blue-gradient {
+        background: linear-gradient(135deg, #001f60, #1976d2);
+      }
+
+      /* Biểu đồ CSS */
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        height: 300px;
+        padding: 20px;
+        border-bottom: 2px solid #cbd5e1;
+        border-left: 2px solid #cbd5e1;
+        margin-top: 20px;
+      }
+      .bar-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60px;
+      }
+      .bar {
+        width: 100%;
+        background: var(--primary-blue);
+        border-radius: 4px 4px 0 0;
+        transition: height 1s;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .bar-label {
+        margin-top: 10px;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .controls {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 100;
+      }
+      .btn {
+        background: rgba(0, 51, 160, 0.8);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+      .btn:hover {
+        background: var(--primary-red);
+      }
+      .slide-counter {
+        position: absolute;
+        bottom: 25px;
+        left: 30px;
+        font-size: 16px;
+        color: var(--text-gray);
+        font-weight: 600;
+      }
+
+      /* Speaker Notes Panel */
+      .notes-panel {
+        position: absolute;
+        bottom: -400px;
+        left: 0;
+        width: 100%;
+        height: 250px;
+        background: rgba(30, 41, 59, 0.95);
+        color: white;
+        z-index: 90;
+        padding: 30px 80px;
+        border-top: 4px solid var(--primary-red);
+        transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      .notes-panel.open {
+        bottom: 0;
+      }
+      .notes-title {
+        font-family: "Lora", serif;
+        color: var(--accent-gold);
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+
+      .btn-notes {
+        position: absolute;
+        bottom: 20px;
+        left: 100px;
+        z-index: 100;
+        background: var(--text-gray);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
