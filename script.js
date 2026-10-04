@@ -1,5 +1,5 @@
 ﻿for (let i = 0; i < 1000; i++) {
-  console.error("Xuân Triều 😡😡");
+  console.error(i + ".Xuân Triều 😡😡");
 }
 
 const slides = document.querySelectorAll(".slide");
