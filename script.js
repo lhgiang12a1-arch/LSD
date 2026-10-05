@@ -1,4 +1,4 @@
-﻿for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 1000; i++) {
   console.error(i + ".Xuân Triều 😡😡");
 }
 
@@ -60,3 +60,45 @@ document.addEventListener("keydown", (e) => {
 
 // Init
 updateSlide();
+
+// Responsive scaling
+function resizePresentation() {
+  const container = document.querySelector(".presentation-container");
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const containerWidth = 1280;
+  const containerHeight = 720;
+
+  const scaleX = windowWidth / containerWidth;
+  const scaleY = windowHeight / containerHeight;
+  const scale = Math.min(scaleX, scaleY) * 0.98; // 98% to leave a tiny margin
+
+  container.style.transform = `translate(-50%, -50%) scale(${scale})`;
+}
+
+window.addEventListener("resize", resizePresentation);
+resizePresentation();
+
+// Swipe navigation for mobile devices
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  if (touchEndX < touchStartX - swipeThreshold) {
+    // Swipe left (next)
+    nextSlide();
+  } else if (touchEndX > touchStartX + swipeThreshold) {
+    // Swipe right (previous)
+    prevSlide();
+  }
+}
