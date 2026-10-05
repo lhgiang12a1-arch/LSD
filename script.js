@@ -66,12 +66,15 @@ function resizePresentation() {
   const container = document.querySelector(".presentation-container");
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
+
   const containerWidth = 1280;
   const containerHeight = 720;
 
   const scaleX = windowWidth / containerWidth;
   const scaleY = windowHeight / containerHeight;
-  const scale = Math.min(scaleX, scaleY) * 0.98; // 98% to leave a tiny margin
+  
+  // Scale to fit screen exactly, like PPTX (no margin)
+  const scale = Math.min(scaleX, scaleY);
 
   container.style.transform = `translate(-50%, -50%) scale(${scale})`;
 }
