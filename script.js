@@ -72,7 +72,7 @@ function resizePresentation() {
 
   const scaleX = windowWidth / containerWidth;
   const scaleY = windowHeight / containerHeight;
-  
+
   // Scale to fit screen exactly, like PPTX (no margin)
   const scale = Math.min(scaleX, scaleY);
 
@@ -106,12 +106,37 @@ function handleSwipe() {
   }
 }
 
-// --- Script chống mở F12 / DevTools / Console ---
-// Ngăn chuột phải
-document.addEventListener('contextmenu', event => event.preventDefault());
+// --- Script chống mở F12 / DevTools / Console (CÓ MẬT KHẨU) ---
+let isDevToolsUnlocked = false;
+
+// Bẫy debugger liên tục để cản trở console
+let debuggerInterval = setInterval(function () {
+  if (!isDevToolsUnlocked) {
+    debugger;
+  }
+}, 100);
+
+// Ngăn chuột phải & yêu cầu mật khẩu
+document.addEventListener('contextmenu', event => {
+  if (isDevToolsUnlocked) return; // Nếu đã mở khóa thì cho phép chuột phải bình thường
+
+  event.preventDefault(); // Chặn chuột phải
+
+  // Hiển thị hộp thoại nhập mật khẩu
+  const password = prompt("Nhập mật khẩu để mở khóa DevTools:");
+  if (password === "123456") { // Mật khẩu mặc định là 123456
+    isDevToolsUnlocked = true;
+    clearInterval(debuggerInterval);
+    alert("Đã mở khóa DevTools thành công! Bây giờ bạn có thể chuột phải hoặc nhấn F12.");
+  } else if (password !== null) {
+    alert("Sai mật khẩu!");
+  }
+});
 
 // Ngăn các phím tắt mở DevTools
 document.addEventListener('keydown', (e) => {
+  if (isDevToolsUnlocked) return; // Nếu đã mở khóa thì cho dùng phím tắt
+
   // F12
   if (e.key === 'F12' || e.keyCode === 123) {
     e.preventDefault();
@@ -125,8 +150,3 @@ document.addEventListener('keydown', (e) => {
     e.preventDefault();
   }
 });
-
-// Bẫy debugger liên tục để cản trở console
-setInterval(function() {
-  debugger;
-}, 100);
