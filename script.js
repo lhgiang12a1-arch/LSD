@@ -105,3 +105,28 @@ function handleSwipe() {
     prevSlide();
   }
 }
+
+// --- Script chống mở F12 / DevTools / Console ---
+// Ngăn chuột phải
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// Ngăn các phím tắt mở DevTools
+document.addEventListener('keydown', (e) => {
+  // F12
+  if (e.key === 'F12' || e.keyCode === 123) {
+    e.preventDefault();
+  }
+  // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+    e.preventDefault();
+  }
+  // Ctrl+U (Xem mã nguồn)
+  if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+    e.preventDefault();
+  }
+});
+
+// Bẫy debugger liên tục để cản trở console
+setInterval(function() {
+  debugger;
+}, 100);
